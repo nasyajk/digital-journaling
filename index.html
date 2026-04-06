@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>my productive life ✦ jurnal & progress</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Nunito:ital,wght@0,400;0,500;0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --b50:#f0f8ff; --b100:#dbeeff; --b200:#b6e0fe; --b300:#7cc8fb;
+  --b400:#36b0f5; --b500:#0e91e3; --b600:#0a6eb0;
+  --mint:#d2f5ed; --mint2:#6dd5c4; --mint3:#0f8c6e;
+  --peach:#ffe4d6; --peach2:#ffaa80; --peach3:#c0501a;
+  --lav:#ede9fe; --lav2:#a78bfa; --lav3:#5b21b6;
+  --yell:#fff7cc; --yell2:#ffd040; --yell3:#92600a;
+  --pink:#fce7f3; --pink2:#f472b6; --pink3:#9d174d;
+  --white:#ffffff;
+  --text:#1e3a5f; --textm:#5a80a0; --texth:#9ab8d0;
+  --r:18px; --rs:10px;
+}
+
+*, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: var(--b50);
+  color: var(--text);
+  min-height: 100vh;
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='5' fill='%2336b0f5' opacity='.5'/%3E%3C/svg%3E") 12 12, auto;
+}
+
+/* ═══ SPARKLE BG ═══ */
+.bg {
+  position:fixed; inset:0; z-index:0; overflow:hidden; pointer-events:none;
+  background: radial-gradient(ellipse 80% 60% at 10% 0%, #c8e8ff 0%, transparent 60%),
+              radial-gradient(ellipse 60% 50% at 90% 10%, #d2f5ed 0%, transparent 55%),
+              radial-gradient(ellipse 50% 60% at 80% 90%, #ffe4d6 0%, transparent 55%),
+              radial-gradient(ellipse 40% 40% at 20% 80%, #ede9fe 0%, transparent 55%),
+              #f0f8ff;
+}
+
+.star-field { position:fixed; inset:0; z-index:0; pointer-events:none; }
+.sparkle {
+  position:absolute; font-size:14px; opacity:0;
+  animation: twinkle var(--d,3s) var(--delay,0s) ease-in-out infinite;
+}
+@keyframes twinkle {
+  0%,100%{opacity:0;transform:scale(.5) rotate(0deg)}
+  50%{opacity:.6;transform:scale(1) rotate(20deg)}
+}
+
+/* ═══ FLOATING DECO ═══ */
+.deco {
+  position:fixed; pointer-events:none; z-index:0;
+  font-size:28px; opacity:.18;
+  animation: floatDeco var(--fd,6s) ease-in-out infinite;
+}
+@keyframes floatDeco {
+  0%,100%{transform:translateY(0) rotate(0deg)}
+  50%{transform:translateY(-18px) rotate(10deg)}
+}
+
+/* ═══ LAYOUT ═══ */
+.container { max-width:660px; margin:0 auto; padding:0 18px 80px; position:relative; z-index:1; }
+
+/* ═══ HEADER ═══ */
+.header {
+  text-align:center;
+  padding:52px 0 28px;
+}
+.header-badge {
+  display:inline-block;
+  background: linear-gradient(135deg,#b6e0fe,#d2f5ed);
+  color: var(--b600);
+  font-size:11px; font-weight:800;
+  padding:5px 16px; border-radius:99px;
+  letter-spacing:.08em; text-transform:uppercase;
+  margin-bottom:14px;
+  animation: fadeDown .6s ease both;
+}
+.header h1 {
+  font-family:'Baloo 2',sans-serif;
+  font-size:38px; font-weight:800;
+  color: var(--text);
+  line-height:1.1; margin-bottom:6px;
+  animation: fadeDown .6s .1s ease both;
+}
+.header h1 .accent { color: var(--b500); }
+.header h1 .cute { color: var(--peach2); }
+.header .sub {
+  font-size:14px; font-weight:600; color:var(--textm);
+  animation: fadeDown .6s .2s ease both;
+}
+.header .sub span { color:var(--b400); }
+
+.mascot {
+  font-size:64px;
+  display:block; margin:0 auto 12px;
+  animation: bounce 2.4s ease-in-out infinite;
+  filter: drop-shadow(0 8px 16px rgba(54,176,245,.2));
+}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+@keyframes fadeDown{from{opacity:0;transform:translateY(-16px)}to{opacity:1;transform:none}}
+
+/* ═══ NAV ═══ */
+.nav {
+  display:flex; gap:5px;
+  background:white; border-radius:var(--r);
+  padding:6px; margin-bottom:20px;
+  box-shadow:0 2px 20px rgba(54,176,245,.12);
+  border:1.5px solid var(--b100);
+  overflow-x:auto; scrollbar-width:none;
+}
+.nav::-webkit-scrollbar{display:none}
+.nav-btn {
+  flex:1; min-width:68px;
+  padding:9px 6px; border-radius:12px;
+  border:none; background:transparent;
+  font-family:'Nunito',sans-serif;
+  font-size:11px; font-weight:700;
+  color:var(--texth); cursor:pointer;
+  transition:all .2s;
+  display:flex; flex-direction:column; align-items:center; gap:3px;
+}
+.nav-btn .ni { font-size:19px; transition:transform .2s; }
+.nav-btn:hover .ni { transform:scale(1.2) rotate(-5deg); }
+.nav-btn.active { background:var(--b100); color:var(--b600); }
+.panel { display:none; animation: panelIn .3s ease both; }
+.panel.active { display:block; }
+@keyframes panelIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* ═══ CARDS ═══ */
+.card {
+  background:white; border-radius:var(--r);
+  padding:22px 22px; margin-bottom:14px;
+  box-shadow:0 2px 18px rgba(54,176,245,.09);
+  border:1.5px solid var(--b100);
+  position:relative; overflow:hidden;
+  transition: transform .2s, box-shadow .2s;
+}
+.card:hover { transform:translateY(-2px); box-shadow:0 6px 28px rgba(54,176,245,.14); }
+.card-stripe {
+  position:absolute; top:0; left:0; right:0; height:4px; border-radius:var(--r) var(--r) 0 0;
+}
+.stripe-blue   { background:linear-gradient(90deg,#36b0f5,#6dd5c4); }
+.stripe-peach  { background:linear-gradient(90deg,#ffaa80,#ffd040); }
+.stripe-lav    { background:linear-gradient(90deg,#a78bfa,#f472b6); }
+.stripe-mint   { background:linear-gradient(90deg,#6dd5c4,#b6e0fe); }
+.stripe-yellow { background:linear-gradient(90deg,#ffd040,#ffaa80); }
+
+.card-title {
+  font-family:'Baloo 2',sans-serif;
+  font-size:16px; font-weight:700;
+  color:var(--text); margin-bottom:14px;
+  display:flex; align-items:center; gap:9px;
+}
+.ctag {
+  font-size:10px; font-weight:800;
+  padding:3px 9px; border-radius:99px;
+  text-transform:uppercase; letter-spacing:.06em;
+}
+.ctag-blue   { background:var(--b100); color:var(--b600); }
+.ctag-mint   { background:var(--mint); color:var(--mint3); }
+.ctag-peach  { background:var(--peach); color:var(--peach3); }
+.ctag-lav    { background:var(--lav); color:var(--lav3); }
+.ctag-yell   { background:var(--yell); color:var(--yell3); }
+
+/* ═══ PROGRESS ═══ */
+.prog-meta {
+  display:flex; justify-content:space-between;
+  font-size:12px; font-weight:700; color:var(--textm);
+  margin-bottom:8px;
+}
+.prog-bar {
+  height:16px; background:var(--b100);
+  border-radius:99px; overflow:hidden; position:relative;
+}
+.prog-fill {
+  height:100%; border-radius:99px;
+  background:linear-gradient(90deg,#36b0f5,#6dd5c4);
+  transition:width 1.2s cubic-bezier(.34,1.56,.64,1);
+  position:relative;
+}
+.prog-fill::after {
+  content:'🌸'; position:absolute; right:-10px; top:50%;
+  transform:translateY(-50%); font-size:14px;
+}
+.stats {
+  display:grid; grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:10px; margin-top:16px;
+}
+.stat {
+  background:var(--b50); border-radius:12px;
+  padding:12px 8px; text-align:center;
+  border:1px solid var(--b100);
+  transition:transform .2s;
+}
+.stat:hover{transform:scale(1.04)}
+.stat .n {
+  font-family:'Baloo 2',sans-serif;
+  font-size:26px; font-weight:800;
+  color:var(--b500); display:block; line-height:1;
+}
+.stat .l { font-size:11px; color:var(--texth); font-weight:700; margin-top:4px; }
+
+/* ═══ COUNTDOWN ═══ */
+.cd-grid {
+  display:grid; grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:10px; margin-top:4px;
+}
+.cd-box {
+  background:var(--b50); border:1px solid var(--b100);
+  border-radius:12px; padding:14px 8px; text-align:center;
+  transition:transform .2s;
+}
+.cd-box:hover{transform:scale(1.05)}
+.cd-num {
+  font-family:'Baloo 2',sans-serif;
+  font-size:28px; font-weight:800; color:var(--b500); display:block;
+}
+.cd-lbl { font-size:11px; color:var(--texth); font-weight:700; }
+
+/* ═══ PHASE BADGE ═══ */
+.live-badge {
+  display:inline-flex; align-items:center; gap:6px;
+  background:var(--mint); color:var(--mint3);
+  font-size:11px; font-weight:800;
+  padding:5px 14px; border-radius:99px;
+  margin-bottom:14px; letter-spacing:.04em;
+}
+.live-dot {
+  width:7px;height:7px;border-radius:50%;background:var(--mint2);
+  animation:pulse 1.4s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.6);opacity:.5}}
+
+/* ═══ QUOTE ═══ */
+.quote-text {
+  font-size:15px; font-weight:600; color:var(--text);
+  font-style:italic; line-height:1.7;
+  padding:4px 0 4px 12px;
+  border-left:3px solid var(--b300);
+  margin-bottom:10px;
+}
+.quote-sub { font-size:12px; color:var(--texth); font-weight:700; }
+
+/* ═══ CHECKLIST ═══ */
+.cl-list { display:flex; flex-direction:column; gap:7px; }
+.cl-item {
+  display:flex; align-items:center; gap:11px;
+  padding:11px 14px; border-radius:var(--rs);
+  background:var(--b50); border:1.5px solid var(--b100);
+  cursor:pointer; transition:all .2s; user-select:none;
+}
+.cl-item:hover { background:var(--b100); transform:translateX(4px); }
+.cl-item.done { background:var(--mint); border-color:var(--mint2); }
+.cl-item.done .cl-label { text-decoration:line-through; color:var(--texth); }
+.cl-box {
+  width:22px;height:22px; border-radius:7px;
+  border:2px solid var(--b300); background:white;
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px; color:transparent; flex-shrink:0;
+  transition:all .2s;
+}
+.cl-item.done .cl-box { background:var(--mint2); border-color:var(--mint2); color:white; }
+.cl-label { font-size:13px; font-weight:700; color:var(--text); }
+.cl-en { font-size:11px; font-weight:600; color:var(--texth); display:block; }
+.cl-score {
+  margin-top:14px; text-align:center;
+  padding:10px 16px; border-radius:var(--rs);
+  background:var(--b50); border:1px solid var(--b100);
+  font-size:13px; font-weight:700; color:var(--textm);
+}
+.cl-score .n { color:var(--b500); font-size:20px; font-family:'Baloo 2',sans-serif; }
+
+/* ═══ JOURNAL ═══ */
+.section-lbl {
+  font-size:11px; font-weight:800; color:var(--texth);
+  text-transform:uppercase; letter-spacing:.08em; margin-bottom:8px;
+}
+.mood-row { display:flex; gap:7px; flex-wrap:wrap; margin-bottom:14px; }
+.mood-btn {
+  padding:7px 15px; border-radius:99px;
+  border:1.5px solid var(--b100); background:var(--b50);
+  font-size:13px; font-weight:700; color:var(--textm);
+  cursor:pointer; transition:all .2s;
+  font-family:'Nunito',sans-serif;
+}
+.mood-btn:hover { border-color:var(--b300); transform:scale(1.06); }
+.mood-btn.on { background:var(--b200); border-color:var(--b400); color:var(--b600); transform:scale(1.08); }
+
+.energy-wrap { display:flex; gap:7px; margin-bottom:14px; }
+.e-pip {
+  width:34px;height:34px;border-radius:50%;
+  border:1.5px solid var(--b100); background:var(--b50);
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:800;color:var(--texth);
+  cursor:pointer; transition:all .2s;
+}
+.e-pip:hover{transform:scale(1.12)}
+.e-pip.on{background:var(--b300);border-color:var(--b400);color:white;}
+
+textarea {
+  width:100%; padding:12px 14px;
+  border-radius:var(--rs); border:1.5px solid var(--b100);
+  background:var(--b50);
+  font-family:'Nunito',sans-serif;
+  font-size:13px;font-weight:600;color:var(--text);
+  resize:none; outline:none; transition:all .2s;
+  line-height:1.7; margin-bottom:12px;
+}
+textarea:focus{border-color:var(--b300);background:white;}
+textarea::placeholder{color:var(--texth);}
+
+.star-wrap{display:flex;gap:5px;margin-bottom:16px;}
+.star{font-size:26px;cursor:pointer;color:var(--b100);transition:all .15s;}
+.star.on{color:var(--yell2);transform:scale(1.25) rotate(-5deg);}
+
+.btn-primary {
+  width:100%; padding:14px;
+  border-radius:var(--rs); border:none;
+  background:linear-gradient(135deg,#36b0f5,#6dd5c4);
+  color:white; font-family:'Baloo 2',sans-serif;
+  font-size:15px;font-weight:700;
+  cursor:pointer; transition:all .25s;
+  letter-spacing:.3px;
+}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(54,176,245,.4);}
+.btn-primary:active{transform:translateY(0);}
+.btn-ghost {
+  width:100%;padding:11px;border-radius:var(--rs);
+  border:1.5px solid var(--b200);background:transparent;
+  color:var(--b500);font-family:'Nunito',sans-serif;
+  font-size:13px;font-weight:700;cursor:pointer;transition:all .2s;
+  margin-top:8px;
+}
+.btn-ghost:hover{background:var(--b100);}
+
+/* ═══ TARGETS ═══ */
+.target-card {
+  display:flex;gap:13px;align-items:flex-start;
+  padding:13px 15px; border-radius:var(--rs);
+  margin-bottom:9px; border:1.5px solid;
+  transition:transform .2s;
+}
+.target-card:hover{transform:translateX(4px);}
+.tc1{background:var(--b50);border-color:var(--b200);}
+.tc2{background:var(--mint);border-color:#9FE1CB;}
+.tc3{background:var(--peach);border-color:#F5C4B3;}
+.tc4{background:var(--lav);border-color:#CECBF6;}
+.tc5{background:var(--yell);border-color:#FAC775;}
+.ticon{font-size:24px;flex-shrink:0;margin-top:1px;}
+.tc-title{font-size:13px;font-weight:800;color:var(--text);margin-bottom:3px;}
+.tc-sub{font-size:12px;font-weight:600;line-height:1.6;}
+.tc1 .tc-sub{color:var(--textm);}
+.tc2 .tc-sub{color:var(--mint3);}
+.tc3 .tc-sub{color:var(--peach3);}
+.tc4 .tc-sub{color:var(--lav3);}
+.tc5 .tc-sub{color:var(--yell3);}
+
+/* ═══ SCHEDULE ═══ */
+.sched { display:flex;flex-direction:column;gap:7px; }
+.sched-row{display:flex;gap:10px;align-items:center;}
+.sched-time{min-width:48px;font-size:11px;font-weight:800;color:var(--texth);}
+.sched-pill{
+  padding:6px 14px;border-radius:99px;
+  font-size:12px;font-weight:700;
+}
+.sp1{background:var(--yell);color:var(--yell3);}
+.sp2{background:var(--mint);color:var(--mint3);}
+.sp3{background:var(--peach);color:var(--peach3);}
+.sp4{background:var(--b100);color:var(--b600);}
+.sp5{background:var(--lav);color:var(--lav3);}
+.sp6{background:var(--pink);color:var(--pink3);}
+.sp7{background:var(--b50);color:var(--texth);}
+
+/* ═══ HISTORY ═══ */
+.hist-entry{
+  background:var(--b50);border-radius:var(--rs);
+  padding:13px 15px;margin-bottom:9px;
+  border:1.5px solid var(--b100);
+  transition:transform .15s;
+}
+.hist-entry:hover{transform:translateX(3px);}
+.hist-date{font-size:11px;font-weight:800;color:var(--texth);margin-bottom:7px;}
+.hist-badges{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:7px;}
+.hb{font-size:11px;font-weight:700;padding:3px 10px;border-radius:99px;}
+.hb-blue{background:var(--b100);color:var(--b600);}
+.hb-mint{background:var(--mint);color:var(--mint3);}
+.hb-yell{background:var(--yell);color:var(--yell3);}
+.hist-text{font-size:12px;font-weight:600;color:var(--textm);line-height:1.7;}
+.empty{text-align:center;padding:28px 16px;color:var(--texth);}
+.empty .emo{font-size:40px;display:block;margin-bottom:8px;}
+.empty p{font-size:13px;font-weight:700;}
+
+/* ═══ TOAST ═══ */
+.toast{
+  position:fixed;bottom:26px;left:50%;
+  transform:translateX(-50%) translateY(80px);
+  background:linear-gradient(135deg,#36b0f5,#6dd5c4);
+  color:white;padding:12px 26px;border-radius:99px;
+  font-family:'Baloo 2',sans-serif;font-size:14px;font-weight:700;
+  box-shadow:0 6px 24px rgba(54,176,245,.45);
+  transition:transform .35s cubic-bezier(.34,1.56,.64,1);
+  z-index:999;pointer-events:none;white-space:nowrap;
+}
+.toast.show{transform:translateX(-50%) translateY(0);}
+
+/* ═══ FOOTER ═══ */
+.footer{text-align:center;padding:20px 0 0;font-size:12px;font-weight:700;color:var(--texth);}
+.footer b{color:var(--b400);}
+</style>
+</head>
+<body>
+
+<div class="bg"></div>
+
+<!-- sparkles -->
+<div class="star-field" id="starField"></div>
+
+<!-- floating deco -->
+<div class="deco" style="top:8%;left:3%;--fd:5s;">🌸</div>
+<div class="deco" style="top:15%;right:4%;--fd:7s;animation-delay:1s;">⭐</div>
+<div class="deco" style="top:45%;left:1%;--fd:6.5s;animation-delay:2s;">🌷</div>
+<div class="deco" style="bottom:20%;right:3%;--fd:4.5s;animation-delay:.5s;">✨</div>
+<div class="deco" style="bottom:8%;left:6%;--fd:8s;animation-delay:1.5s;">🍀</div>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <header class="header">
+    <span class="mascot">🌸</span>
+    <div class="header-badge">my journey to japan 🇯🇵</div>
+    <h1>My <span class="accent">Productive</span><br><span class="cute">Life</span> ✦</h1>
+    <p class="sub">daily journal & progress tracker · <span>semangat terus ya!</span> 💙</p>
+  </header>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <button class="nav-btn active" onclick="go('home',this)"><span class="ni">🏡</span>Home</button>
+    <button class="nav-btn" onclick="go('journal',this)"><span class="ni">📖</span>Journal</button>
+    <button class="nav-btn" onclick="go('daily',this)"><span class="ni">✅</span>Daily</button>
+    <button class="nav-btn" onclick="go('goals',this)"><span class="ni">🎯</span>Goals</button>
+    <button class="nav-btn" onclick="go('history',this)"><span class="ni">📚</span>History</button>
+  </nav>
+
+  <!-- ══════ HOME ══════ -->
+  <div id="p-home" class="panel active">
+
+    <div class="card">
+      <div class="card-stripe stripe-blue"></div>
+      <div class="live-badge"><div class="live-dot"></div>currently working here ✦</div>
+      <div class="card-title">
+        Progress di SUAI
+        <span class="ctag ctag-blue">6 Apr – 4 Nov</span>
+      </div>
+      <div class="prog-meta">
+        <span>hari ini: <span id="hToday"></span></span>
+        <span id="hPct" style="color:var(--b500);">0%</span>
+      </div>
+      <div class="prog-bar"><div class="prog-fill" id="hFill" style="width:0%"></div></div>
+      <div class="stats">
+        <div class="stat"><span class="n" id="hWorked">0</span><div class="l">days worked</div></div>
+        <div class="stat"><span class="n" id="hLeft" style="color:var(--mint2);"></span><div class="l">days left</div></div>
+        <div class="stat"><span class="n">212</span><div class="l">total days</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-stripe stripe-peach"></div>
+      <div class="card-title">Countdown ke LPK 🇯🇵 <span class="ctag ctag-peach">Nov 2026</span></div>
+      <p style="font-size:13px;font-weight:600;color:var(--textm);margin-bottom:12px;">Almost there! LPK Brexa / Minori menunggu kamu ✨</p>
+      <div class="cd-grid">
+        <div class="cd-box"><span class="cd-num" id="cdD">—</span><div class="cd-lbl">days / hari</div></div>
+        <div class="cd-box"><span class="cd-num" id="cdW">—</span><div class="cd-lbl">weeks / minggu</div></div>
+        <div class="cd-box"><span class="cd-num" id="cdM">—</span><div class="cd-lbl">months / bulan</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-stripe stripe-mint"></div>
+      <div class="card-title">Today's vibe ✨ <span class="ctag ctag-mint">quote harian</span></div>
+      <p class="quote-text" id="hQuote"></p>
+      <p class="quote-sub">Tap the card for a new quote 🔁</p>
+      <button class="btn-ghost" onclick="newQuote()">new quote please! 🌸</button>
+    </div>
+
+  </div>
+
+  <!-- ══════ JOURNAL ══════ -->
+  <div id="p-journal" class="panel">
+    <div class="card">
+      <div class="card-stripe stripe-lav"></div>
+      <div class="card-title">
+        Today's Journal 📖
+        <span class="ctag ctag-lav" id="jDate"></span>
+      </div>
+
+      <div class="section-lbl">how do you feel today? 🌈</div>
+      <div class="mood-row">
+        <button class="mood-btn" onclick="setMood(this,'Excited 🔥')">Excited 🔥</button>
+        <button class="mood-btn" onclick="setMood(this,'Happy 🥰')">Happy 🥰</button>
+        <button class="mood-btn" onclick="setMood(this,'Chill 😌')">Chill 😌</button>
+        <button class="mood-btn" onclick="setMood(this,'Tired 😴')">Tired 😴</button>
+        <button class="mood-btn" onclick="setMood(this,'Stressed 😅')">Stressed 😅</button>
+      </div>
+
+      <div class="section-lbl">energy level today ⚡ (1–5)</div>
+      <div class="energy-wrap">
+        <div class="e-pip" onclick="setE(1)">1</div>
+        <div class="e-pip" onclick="setE(2)">2</div>
+        <div class="e-pip" onclick="setE(3)">3</div>
+        <div class="e-pip" onclick="setE(4)">4</div>
+        <div class="e-pip" onclick="setE(5)">5</div>
+      </div>
+
+      <div class="section-lbl">3 wins hari ini 🌟 (sekecil apapun!)</div>
+      <textarea id="jWins" rows="3" placeholder="1. aku berhasil...&#10;2. hari ini aku...&#10;3. I'm proud of..."></textarea>
+
+      <div class="section-lbl">1 thing to improve besok 🌱</div>
+      <textarea id="jImprove" rows="2" placeholder="Tomorrow I will / Besok aku mau..."></textarea>
+
+      <div class="section-lbl">notes & gratitude 🙏 (bebas nulis apapun!)</div>
+      <textarea id="jNotes" rows="3" placeholder="I'm grateful because / Aku bersyukur hari ini karena..."></textarea>
+
+      <div class="section-lbl">rate your day ✨</div>
+      <div class="star-wrap">
+        <span class="star" onclick="setStar(1)">★</span>
+        <span class="star" onclick="setStar(2)">★</span>
+        <span class="star" onclick="setStar(3)">★</span>
+        <span class="star" onclick="setStar(4)">★</span>
+        <span class="star" onclick="setStar(5)">★</span>
+      </div>
+
+      <button class="btn-primary" onclick="saveJournal()">save today's journal 🌸</button>
+    </div>
+  </div>
+
+  <!-- ══════ DAILY CHECKLIST ══════ -->
+  <div id="p-daily" class="panel">
+    <div class="card">
+      <div class="card-stripe stripe-blue"></div>
+      <div class="card-title">Daily Habits ✅ <span class="ctag ctag-blue">tap to check!</span></div>
+      <div class="cl-list" id="clList"></div>
+      <div class="cl-score" id="clScore">
+        <span class="n">0</span> / 10 done today ✦ keep going!
+      </div>
+      <button class="btn-ghost" onclick="resetCL()">reset checklist 🔄</button>
+    </div>
+  </div>
+
+  <!-- ══════ GOALS ══════ -->
+  <div id="p-goals" class="panel">
+
+    <div class="card">
+      <div class="card-stripe stripe-peach"></div>
+      <div class="card-title">My Goals ✦ <span class="ctag ctag-peach">SUAI → LPK</span></div>
+      <div class="target-card tc1">
+        <div class="ticon">🇯🇵</div>
+        <div><div class="tc-title">Japanese Basics (N5) · Bahasa Jepang Dasar</div><div class="tc-sub">Hiragana, Katakana, everyday vocab & simple conversation before entering LPK!</div></div>
+      </div>
+      <div class="target-card tc2">
+        <div class="ticon">💪</div>
+        <div><div class="tc-title">Stay Healthy · Jaga Kesehatan</div><div class="tc-sub">Exercise min. 3x/week, sleep 7–8 hours, makan bergizi every day — body siap kerja keras!</div></div>
+      </div>
+      <div class="target-card tc3">
+        <div class="ticon">💰</div>
+        <div><div class="tc-title">Disciplined Saving · Tabungan Disiplin</div><div class="tc-sub">Pisahkan biaya LPK, daily expenses, dan emergency fund. Budget every month, no skip!</div></div>
+      </div>
+      <div class="target-card tc4">
+        <div class="ticon">🧠</div>
+        <div><div class="tc-title">Soft Skills · Attitude & Disiplin</div><div class="tc-sub">Tepat waktu, good communication, teamwork — kunci sukses di Jepang dan kehidupan nyata.</div></div>
+      </div>
+      <div class="target-card tc5">
+        <div class="ticon">📋</div>
+        <div><div class="tc-title">Research LPK · Persiapan Dokumen</div><div class="tc-sub">Study LPK Brexa & Minori — requirements, biaya, bidang kerja, perbedaannya. Masuk dengan persiapan!</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-stripe stripe-mint"></div>
+      <div class="card-title">Daily Schedule 📅 <span class="ctag ctag-mint">ideal routine</span></div>
+      <div class="sched">
+        <div class="sched-row"><span class="sched-time">05:00</span><span class="sched-pill sp1">🕌 Subuh · morning prayer</span></div>
+        <div class="sched-row"><span class="sched-time">05:30</span><span class="sched-pill sp2">🏃 Light workout · olahraga 20 min</span></div>
+        <div class="sched-row"><span class="sched-time">06:00</span><span class="sched-pill sp3">🍳 Breakfast · sarapan bergizi</span></div>
+        <div class="sched-row"><span class="sched-time">07:00</span><span class="sched-pill sp4">💼 Work at SUAI · kerja fokus!</span></div>
+        <div class="sched-row"><span class="sched-time">12:00</span><span class="sched-pill sp2">🥗 Lunch break · istirahat siang</span></div>
+        <div class="sched-row"><span class="sched-time">13:00</span><span class="sched-pill sp4">💼 Back to work · lanjut kerja</span></div>
+        <div class="sched-row"><span class="sched-time">17:00</span><span class="sched-pill sp5">📚 Study Japanese · 1 hour!</span></div>
+        <div class="sched-row"><span class="sched-time">18:30</span><span class="sched-pill sp3">🍜 Dinner · makan malam</span></div>
+        <div class="sched-row"><span class="sched-time">20:00</span><span class="sched-pill sp6">📖 Journal time · review hari ini</span></div>
+        <div class="sched-row"><span class="sched-time">21:30</span><span class="sched-pill sp7">🌙 Sleep · tidur cukup 7–8 jam</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══════ HISTORY ══════ -->
+  <div id="p-history" class="panel">
+    <div class="card">
+      <div class="card-stripe stripe-lav"></div>
+      <div class="card-title">Journal History 📚 <span class="ctag ctag-lav">semua entri</span></div>
+      <div id="histList"></div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    made with <b>💙</b> for your journey to <b>Japan</b> ✦ ganbatte ne! 🇯🇵
+  </footer>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ── sparkles ── */
+(function(){
+  var sf=document.getElementById('starField');
+  var emojis=['✦','✧','·','⋆','˚'];
+  for(var i=0;i<28;i++){
+    var s=document.createElement('span');
+    s.className='sparkle';
+    s.textContent=emojis[i%emojis.length];
+    s.style.cssText='left:'+Math.random()*100+'%;top:'+Math.random()*100+'%;'
+      +'--d:'+(2.5+Math.random()*4)+'s;--delay:'+(Math.random()*5)+'s;'
+      +'color:hsl('+(180+Math.random()*60)+',70%,70%);font-size:'+(10+Math.random()*12)+'px;';
+    sf.appendChild(s);
+  }
+})();
+
+/* ── helpers ── */
+var mood='',energy=0,stars=0;
+function pad(n){return n<10?'0'+n:''+n;}
+function todayStr(){var d=new Date();return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());}
+function fmtDate(s){
+  var m=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var p=s.split('-'); return p[2]+' '+m[+p[1]-1]+' '+p[0];
+}
+function store(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
+function load(k,def){try{var v=localStorage.getItem(k);return v?JSON.parse(v):def;}catch(e){return def;}}
+function toast(msg){
+  var t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
+  setTimeout(function(){t.classList.remove('show');},2800);
+}
+
+/* ── quotes ── */
+var quotes=[
+  "Every small step today builds your big dream in Japan. 🇯🇵 Setiap langkah kecil hari ini = pondasi masa depanmu!",
+  "Discipline now = freedom later. Disiplin sekarang, bebas di masa depan! 💪",
+  "You don't have to be perfect — just be consistent. Gak harus sempurna, yang penting konsisten! 🌸",
+  "1 Japanese word per day = 365 words per year. Mulai sekarang ya! ✨",
+  "Rest if you're tired, but never quit. Boleh istirahat, tapi jangan nyerah! 🌙",
+  "You're stronger than you think. Buktikan lewat hari ini! 🔥",
+  "Every productive day = one step closer to LPK. Satu hari produktif = satu langkah menuju LPK! 🎌",
+  "Take care of your body today so you can work hard in Japan tomorrow. Jaga dirimu! 🍀",
+  "Your future self in Japan will thank you for what you do today. 🗾",
+  "Ganbatte! (頑張って) — Do your best, kamu pasti bisa! ⭐",
+];
+var qIdx=Math.floor(Math.random()*quotes.length);
+document.getElementById('hQuote').textContent=quotes[qIdx];
+function newQuote(){
+  qIdx=(qIdx+1)%quotes.length;
+  document.getElementById('hQuote').textContent=quotes[qIdx];
+}
+
+/* ── beranda init ── */
+(function(){
+  var start=new Date('2026-04-06'),end=new Date('2026-11-04');
+  var now=new Date(); now.setHours(0,0,0,0);
+  var total=Math.round((end-start)/86400000);
+  var worked=Math.max(0,Math.round((now-start)/86400000));
+  var left=Math.max(0,Math.round((end-now)/86400000));
+  var pct=Math.min(100,Math.round(worked/total*100));
+  setTimeout(function(){
+    document.getElementById('hFill').style.width=pct+'%';
+    document.getElementById('hPct').textContent=pct+'%';
+  },300);
+  document.getElementById('hWorked').textContent=worked;
+  document.getElementById('hLeft').textContent=left;
+  document.getElementById('hToday').textContent=fmtDate(todayStr());
+  document.getElementById('cdD').textContent=left;
+  document.getElementById('cdW').textContent=Math.floor(left/7);
+  document.getElementById('cdM').textContent=Math.floor(left/30);
+  document.getElementById('jDate').textContent=fmtDate(todayStr());
+})();
+
+/* ── checklist data ── */
+var clData=[
+  {en:'Morning prayer / ibadah pagi',id:'Subuh & bangun tepat waktu'},
+  {en:'Morning workout / olahraga',id:'Stretching atau olahraga ringan'},
+  {en:'Eat a good breakfast',id:'Sarapan bergizi'},
+  {en:'Focus at work — no distractions!',id:'Kerja fokus tanpa distraksi'},
+  {en:'Study Japanese (min. 20 min)',id:'Belajar Bahasa Jepang hari ini'},
+  {en:'Drink enough water (8 glasses)',id:'Minum air putih cukup'},
+  {en:'Limit phone scrolling',id:'Tidak scrolling HP berlebihan'},
+  {en:'Eat dinner on time',id:'Makan malam tidak terlalu larut'},
+  {en:'Journal & review your day',id:'Review & journaling singkat'},
+  {en:'Sleep before 10 PM',id:'Tidur sebelum jam 22:00'},
+];
+
+function buildCL(){
+  var saved=load('cl_'+todayStr(),{});
+  var el=document.getElementById('clList');
+  el.innerHTML='';
+  clData.forEach(function(item,i){
+    var done=!!saved[i];
+    var div=document.createElement('div');
+    div.className='cl-item'+(done?' done':'');
+    div.innerHTML='<div class="cl-box">'+(done?'✓':'')+'</div>'
+      +'<div><div class="cl-label">'+item.id+'</div><span class="cl-en">'+item.en+'</span></div>';
+    div.onclick=function(){
+      div.classList.toggle('done');
+      var b=div.querySelector('.cl-box');
+      b.textContent=div.classList.contains('done')?'✓':'';
+      var sv=load('cl_'+todayStr(),{});
+      if(div.classList.contains('done')) sv[i]=1; else delete sv[i];
+      store('cl_'+todayStr(),sv);
+      updateCLScore();
+    };
+    el.appendChild(div);
+  });
+  updateCLScore();
+}
+function updateCLScore(){
+  var done=document.querySelectorAll('.cl-item.done').length;
+  var s=document.getElementById('clScore');
+  var msg=done===10?' — perfect day!! 🎉':done>=7?' — almost there! 🌟':' — keep going! 💙';
+  s.innerHTML='<span class="n">'+done+'</span> / 10 done today'+msg;
+}
+function resetCL(){
+  store('cl_'+todayStr(),{});
+  buildCL();
+  toast('Checklist reset! Let\'s start fresh 🌸');
+}
+
+/* ── journal ── */
+function setMood(el,val){
+  document.querySelectorAll('.mood-btn').forEach(function(b){b.classList.remove('on');});
+  el.classList.add('on'); mood=val;
+}
+function setE(val){
+  energy=val;
+  document.querySelectorAll('.e-pip').forEach(function(d,i){d.classList.toggle('on',i<val);});
+}
+function setStar(val){
+  stars=val;
+  document.querySelectorAll('.star').forEach(function(s,i){s.classList.toggle('on',i<val);});
+}
+function saveJournal(){
+  var w=document.getElementById('jWins').value.trim();
+  var im=document.getElementById('jImprove').value.trim();
+  var n=document.getElementById('jNotes').value.trim();
+  if(!mood&&!w&&!n){toast('Fill at least one section ya! 🌸');return;}
+  var entries=load('jrn',[]);
+  entries=entries.filter(function(e){return e.date!==todayStr();});
+  entries.unshift({date:todayStr(),mood:mood,energy:energy,stars:stars,wins:w,improve:im,notes:n});
+  store('jrn',entries);
+  toast('Journal saved! You did great today 🌟');
+  ['jWins','jImprove','jNotes'].forEach(function(id){document.getElementById(id).value='';});
+  mood='';energy=0;stars=0;
+  document.querySelectorAll('.mood-btn,.e-pip,.star').forEach(function(el){el.classList.remove('on');});
+}
+
+/* ── history ── */
+function renderHistory(){
+  var entries=load('jrn',[]);
+  var el=document.getElementById('histList');
+  if(!entries.length){
+    el.innerHTML='<div class="empty"><span class="emo">🌸</span><p>No entries yet!<br>Yuk tulis jurnal pertamamu~</p></div>';
+    return;
+  }
+  el.innerHTML=entries.map(function(e){
+    var ss=''; for(var i=0;i<e.stars;i++) ss+='★';
+    var badges='';
+    if(e.mood) badges+='<span class="hb hb-blue">'+e.mood+'</span>';
+    if(e.energy) badges+='<span class="hb hb-mint">⚡ '+e.energy+'/5</span>';
+    if(ss) badges+='<span class="hb hb-yell">'+ss+'</span>';
+    var body='';
+    if(e.wins) body+='<b style="color:var(--b500)">wins:</b> '+e.wins.replace(/\n/g,' · ')+'<br>';
+    if(e.improve) body+='<b style="color:var(--mint2)">tomorrow:</b> '+e.improve+'<br>';
+    if(e.notes) body+='<b style="color:var(--lav2)">notes:</b> '+e.notes;
+    return '<div class="hist-entry"><div class="hist-date">📅 '+fmtDate(e.date)+'</div>'
+      +'<div class="hist-badges">'+badges+'</div>'
+      +'<div class="hist-text">'+body+'</div></div>';
+  }).join('');
+}
+
+/* ── nav ── */
+function go(id,btn){
+  document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('active');});
+  document.querySelectorAll('.nav-btn').forEach(function(b){b.classList.remove('active');});
+  document.getElementById('p-'+id).classList.add('active');
+  btn.classList.add('active');
+  if(id==='daily') buildCL();
+  if(id==='history') renderHistory();
+}
+
+buildCL();
+</script>
+</body>
+</html>
